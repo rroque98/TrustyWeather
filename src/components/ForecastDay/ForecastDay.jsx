@@ -1,4 +1,5 @@
 import React from "react";
+import "./ForecastDay.css";
 
 const ForecastDay = ({ day, convertCelsiusToFaren, determineDayOfWeek }) => {
   return (
@@ -17,8 +18,8 @@ const ForecastDay = ({ day, convertCelsiusToFaren, determineDayOfWeek }) => {
       <div>{`${day.wind_direction_compass} ${Math.round(
         day.wind_speed
       )} MPH`}</div>
-      <div>{`Air pressure:${day.air_pressure} in`}</div>
-      <div>{day.humidity}%</div>
+      <div>{`Air pressure:${Math.round(day.air_pressure)} in`}</div>
+      <div>{`Humidity: ${day.humidity}`}%</div>
       <div>{`Visibility: ${Math.round(day.visibility)} mi`}</div>
     </section>
   );
