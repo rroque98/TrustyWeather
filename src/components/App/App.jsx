@@ -1,3 +1,4 @@
+import "./App.css";
 import React, { Component } from "react";
 import axios from "axios";
 import Search from "../Search";
@@ -80,9 +81,11 @@ class App extends Component {
 
   render() {
     return (
-      <div className="appContainer">
-        <header>Trusty Weather</header>
-        <h2>{this.state.locationDisplayed}</h2>
+      <div className="appWrapper">
+        <header className="appTitle">Trusty Weather</header>
+        <header className="locationContainer">
+          {this.state.locationDisplayed}
+        </header>
         <Search
           updateSearchValue={this.updateSearchValue}
           searchValue={this.state.searchValue}
