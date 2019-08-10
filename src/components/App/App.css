@@ -1,0 +1,38 @@
+:root {
+  --mainDarkText: #3d3d3f;
+  --mainLight: #f5f5f5;
+  --mainbackgroundDark: #1f7bd1;
+  --backgroundForecastItems: #155a9b;
+  --whitish: #f9f9f9;
+  --borderColor: #ccd1cb;
+}
+
+body {
+  background: var(--mainLight);
+  padding: 1em;
+}
+
+.appWrapper {
+  display: grid;
+  grid-gap: 10px;
+}
+
+.appTitle {
+  background: var(--mainbackgroundDark);
+  grid-column: 1 / 3;
+  grid-row: 1 / 2;
+  font-weight: 800;
+  font-size: 2rem;
+  color: var(--whitish);
+  padding: 1rem;
+}
+
+.locationContainer {
+  background: var(--whitish);
+  grid-column: 1 / 3;
+  grid-row: 3 / 4;
+  padding: 1em;
+  font-weight: 500;
+  font-size: 1.5em;
+  color: var(--mainDarkText);
+}
