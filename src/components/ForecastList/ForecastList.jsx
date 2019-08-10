@@ -1,3 +1,4 @@
+import "./ForecastList.css";
 import React from "react";
 import ForecastDay from "../ForecastDay";
 
@@ -7,7 +8,7 @@ const ForecastList = ({
   determineDayOfWeek
 }) => {
   return (
-    <article>
+    <article className="forecastListContainer">
       {fiveDayForecast
         ? fiveDayForecast.map(day => (
             <ForecastDay
