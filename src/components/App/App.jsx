@@ -9,12 +9,14 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      location: "oakland",
+      location: "boston",
       searchValue: ""
     };
     this.getWeatherData = this.getWeatherData.bind(this);
     this.updateSearchValue = this.updateSearchValue.bind(this);
     this.handleSearchClick = this.handleSearchClick.bind(this);
+    this.convertCelsiusToFaren = this.convertCelsiusToFaren.bind(this);
+    this.determineDayOfWeek = this.determineDayOfWeek.bind(this);
   }
 
   componentDidMount() {
@@ -34,7 +36,8 @@ class App extends Component {
           .then(weatherData => {
             this.setState({
               currWeather: weatherData.data.consolidated_weather[0],
-              fiveDayForecast: weatherData.data.consolidated_weather.slice(1)
+              fiveDayForecast: weatherData.data.consolidated_weather.slice(1),
+              locationDisplayed: `${weatherData.data.title}, ${weatherData.data.parent.title}`
             });
           })
           .catch(err => {
@@ -57,18 +60,45 @@ class App extends Component {
     this.setState({ location: this.state.searchValue }, this.getWeatherData);
   }
 
+  convertCelsiusToFaren(cel) {
+    return cel * (9 / 5) + 32;
+  }
+
+  determineDayOfWeek(dateStr) {
+    const dateObj = new Date(dateStr);
+    const daysOfWeek = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "WednesDay",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ];
+    return daysOfWeek[dateObj.getDay()];
+  }
+
   render() {
     return (
       <div className="appContainer">
         <header>Trusty Weather</header>
+        <h2>{this.state.locationDisplayed}</h2>
         <Search
           updateSearchValue={this.updateSearchValue}
           searchValue={this.state.searchValue}
-          placholder="Search by city name"
+          placeholderText="Search by city name"
         />
         <SubmitButton value="Search" handleClick={this.handleSearchClick} />
-        <CurrentWeather currWeather={this.state.currWeather} />
-        <ForecastList fiveDayForecast={this.state.fiveDayForecast} />
+        <CurrentWeather
+          currWeather={this.state.currWeather}
+          convertCelsiusToFaren={this.convertCelsiusToFaren}
+          determineDayOfWeek={this.determineDayOfWeek}
+        />
+        <ForecastList
+          fiveDayForecast={this.state.fiveDayForecast}
+          convertCelsiusToFaren={this.convertCelsiusToFaren}
+          determineDayOfWeek={this.determineDayOfWeek}
+        />
       </div>
     );
   }
