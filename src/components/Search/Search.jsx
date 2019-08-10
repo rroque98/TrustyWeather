@@ -1,11 +1,10 @@
-import React, { Component } from "react";
-import axios from "axios";
+import React from "react";
 
-const Search = ({ placeholder, searchValue, updateSearchValue }) => (
+const Search = ({ placeholderText, searchValue, updateSearchValue }) => (
   <section>
     <input
       type="search"
-      placeholder={placeholder}
+      placeholder={placeholderText}
       onChange={updateSearchValue}
       value={searchValue}
     ></input>
