@@ -1,13 +1,24 @@
 import React from "react";
 import ForecastDay from "../ForecastDay";
 
-const ForecastList = ({ fiveDayForecast }) => {
+const ForecastList = ({
+  fiveDayForecast,
+  convertCelsiusToFaren,
+  determineDayOfWeek
+}) => {
   return (
-    <section>
+    <article>
       {fiveDayForecast
-        ? fiveDayForecast.map(day => <ForecastDay day={day} key={day.id} />)
+        ? fiveDayForecast.map(day => (
+            <ForecastDay
+              day={day}
+              key={day.id}
+              convertCelsiusToFaren={convertCelsiusToFaren}
+              determineDayOfWeek={determineDayOfWeek}
+            />
+          ))
         : null}
-    </section>
+    </article>
   );
 };
 
